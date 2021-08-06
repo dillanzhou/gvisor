@@ -362,7 +362,7 @@ func main() {
 						fmt.Fprintf(outputFile, "	stateSourceObject.LoadWait(%d, &%s.%s)\n", fields[name], recv, name)
 					}
 					emitSaveValue := func(name, typName string) {
-						fmt.Fprintf(outputFile, "	var %sValue %s = %s.save%s()\n", name, typName, recv, camelCased(name))
+						fmt.Fprintf(outputFile, "	%sValue := %s.save%s() // type: %s\n", name, recv, camelCased(name), typName)
 						fmt.Fprintf(outputFile, "	stateSinkObject.SaveValue(%d, %sValue)\n", fields[name], name)
 					}
 					emitSave := func(name string) {

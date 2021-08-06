@@ -239,7 +239,7 @@ func (r FromIOReaderAt) ReadToBlocks(dsts BlockSeq) (uint64, error) {
 	return done, nil
 }
 
-func (r FromIOReaderAt) readToBlock(dst Block, buf []byte) (int, []byte, error) {
+func (r *FromIOReaderAt) readToBlock(dst Block, buf []byte) (int, []byte, error) {
 	// io.Reader isn't safecopy-aware, so we have to buffer Blocks that require
 	// safecopy.
 	if !dst.NeedSafecopy() {
